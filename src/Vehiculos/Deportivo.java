@@ -1,4 +1,4 @@
-package model;
+package Vehiculos;
 
 public class Deportivo extends Vehiculo {
 
