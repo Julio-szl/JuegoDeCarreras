@@ -1,75 +1,96 @@
-package model;
+package  model;
 
 public abstract class Vehiculo {
 
     private String nombre;
-    private int velocidadMaxima;
-    private int aceleracion;
-    private int manejo;
-    private int nitro;
-    private int posicion;
+    private float velocidad;
+    private float aceleracion;
+    private float distancia;
+    private String imagen;
 
-    public Vehiculo(String nombre, int velocidadMaxima, int aceleracion,
-                    int manejo, int nitro) {
-
+    public Vehiculo(
+        String nombre,
+        float velocidad,
+        float aceleracion,
+        float distancia,
+        String imagen
+    ) {
         this.nombre = nombre;
-        this.velocidadMaxima = velocidadMaxima;
         this.aceleracion = aceleracion;
-        this.manejo = manejo;
-        this.nitro = nitro;
-        this.posicion = 0;
+        this.distancia = distancia;
+        this.imagen = imagen;
+
+        setVelocidad(velocidad);
+    }
+
+    public abstract void acelerar();
+
+    public abstract void usarHabilidad();
+
+    public void setVelocidad(float velocidad) {
+        try {
+            if (velocidad < 0) {
+                throw new IllegalArgumentException(
+                    "La velocidad no puede ser negativa"
+                );
+            }
+
+            this.velocidad = velocidad;
+
+        }catch (IllegalArgumentException e) {
+            System.out.println(
+                "Error de velocidad: " + e.getMessage()
+            );
+
+            this.velocidad = 0;
+        }
+
+    }
+
+    protected void aumentarVelocidad(float cantidad) {
+        setVelocidad(velocidad + cantidad);
+    }
+
+    protected void aumentarDistancia(float cantidad) {
+        if (cantidad > 0) {
+            distancia += cantidad;
+        }
+    }
+
+    public void avanzar() {
+        distancia += velocidad;
+    }
+
+    public void reiniciar() {
+        velocidad = 0;
+        distancia = 0;
+    }
+
+    public String mostrarInformacion() {
+        return "Nombre: " + nombre
+            + "\nTipo: " + getClass().getSimpleName()
+            + "\nVelocidad: " + velocidad
+            + "\nAceleracion: " + aceleracion
+            + "\nDistancia: " + distancia;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public int getVelocidadMaxima() {
-        return velocidadMaxima;
+    public float getVelocidad() {
+        return velocidad;
     }
 
-    public int getAceleracion() {
+    public float getAceleracion() {
         return aceleracion;
     }
 
-    public int getManejo() {
-        return manejo;
+    public float getDistancia() {
+        return distancia;
     }
 
-    public int getNitro() {
-        return nitro;
-    }
-
-    public int getPosicion() {
-        return posicion;
-    }
-
-    public void avanzarPosicion(int cantidad) {
-        posicion += cantidad;
-    }
-
-    public void reiniciarPosicion() {
-        posicion = 0;
-    }
-
-    public abstract int avanzar();
-
-    public int usarNitro() {
-
-        if (nitro > 0) {
-            nitro--;
-            return 8;
-        }
-
-        return 0;
-    }
-
-    public String mostrarEstadisticas() {
-
-        return "Vehiculo: " + nombre +
-                "\nVelocidad maxima: " + velocidadMaxima +
-                "\nAceleracion: " + aceleracion +
-                "\nManejo: " + manejo +
-                "\nNitros disponibles: " + nitro;
+    public String getImagen() {
+        return imagen;
     }
 }
