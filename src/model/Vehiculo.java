@@ -1,117 +1,96 @@
-package model;
-
-import excepciones.DatosVehiculoException;
+package  model;
 
 public abstract class Vehiculo {
 
     private String nombre;
-    private double velocidad;
-    private double velocidadMaxima;
-    private double aceleracion;
-    private double distanciaRecorrida;
-    private String rutaImagen;
+    private float velocidad;
+    private float aceleracion;
+    private float distancia;
+    private String imagen;
 
-    public Vehiculo(String nombre, double velocidadMaxima,
-                    double aceleracion, String rutaImagen)
-                    throws DatosVehiculoException {
-
-        if (nombre == null || nombre.trim().isEmpty()) {
-            throw new DatosVehiculoException(
-                    "El nombre del vehículo no puede estar vacío."
-            );
-        }
-
-        if (velocidadMaxima <= 0) {
-            throw new DatosVehiculoException(
-                    "La velocidad máxima debe ser mayor que cero."
-            );
-        }
-
-        if (aceleracion <= 0) {
-            throw new DatosVehiculoException(
-                    "La aceleración debe ser mayor que cero."
-            );
-        }
-
+    public Vehiculo(
+        String nombre,
+        float velocidad,
+        float aceleracion,
+        float distancia,
+        String imagen
+    ) {
         this.nombre = nombre;
-        this.velocidad = 0;
-        this.velocidadMaxima = velocidadMaxima;
         this.aceleracion = aceleracion;
-        this.distanciaRecorrida = 0;
-        this.rutaImagen = rutaImagen;
+        this.distancia = distancia;
+        this.imagen = imagen;
+
+        setVelocidad(velocidad);
     }
 
-    public void acelerar() {
-        velocidad += aceleracion;
+    public abstract void acelerar();
 
-        if (velocidad > velocidadMaxima) {
-            velocidad = velocidadMaxima;
+    public abstract void usarHabilidad();
+
+    public void setVelocidad(float velocidad) {
+        try {
+            if (velocidad < 0) {
+                throw new IllegalArgumentException(
+                    "La velocidad no puede ser negativa"
+                );
+            }
+
+            this.velocidad = velocidad;
+
+        }catch (IllegalArgumentException e) {
+            System.out.println(
+                "Error de velocidad: " + e.getMessage()
+            );
+
+            this.velocidad = 0;
+        }
+
+    }
+
+    protected void aumentarVelocidad(float cantidad) {
+        setVelocidad(velocidad + cantidad);
+    }
+
+    protected void aumentarDistancia(float cantidad) {
+        if (cantidad > 0) {
+            distancia += cantidad;
         }
     }
 
     public void avanzar() {
-        distanciaRecorrida += velocidad;
-    }
-
-    public void frenar() {
-        velocidad -= aceleracion;
-
-        if (velocidad < 0) {
-            velocidad = 0;
-        }
+        distancia += velocidad;
     }
 
     public void reiniciar() {
         velocidad = 0;
-        distanciaRecorrida = 0;
+        distancia = 0;
     }
-
-    public abstract void usarHabilidad();
-
-    public abstract String getTipo();
 
     public String mostrarInformacion() {
         return "Nombre: " + nombre
-                + "\nTipo: " + getTipo()
-                + "\nVelocidad máxima: " + velocidadMaxima
-                + "\nAceleración: " + aceleracion;
+            + "\nTipo: " + getClass().getSimpleName()
+            + "\nVelocidad: " + velocidad
+            + "\nAceleracion: " + aceleracion
+            + "\nDistancia: " + distancia;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public double getVelocidad() {
+    public float getVelocidad() {
         return velocidad;
     }
 
-    public double getVelocidadMaxima() {
-        return velocidadMaxima;
-    }
-
-    public double getAceleracion() {
+    public float getAceleracion() {
         return aceleracion;
     }
 
-    public double getDistanciaRecorrida() {
-        return distanciaRecorrida;
+    public float getDistancia() {
+        return distancia;
     }
 
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
-
-    protected void setVelocidad(double velocidad) {
-        if (velocidad < 0) {
-            this.velocidad = 0;
-        } else if (velocidad > velocidadMaxima) {
-            this.velocidad = velocidadMaxima;
-        } else {
-            this.velocidad = velocidad;
-        }
-    }
-
-    protected void setDistanciaRecorrida(double distanciaRecorrida) {
-        this.distanciaRecorrida = Math.max(0, distanciaRecorrida);
+    public String getImagen() {
+        return imagen;
     }
 }
