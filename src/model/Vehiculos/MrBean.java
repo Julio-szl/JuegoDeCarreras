@@ -1,8 +1,8 @@
 package model.Vehiculos;
 
-public class CarroTodoTerreno extends Vehiculo {
+public class MrBean extends Vehiculo {
 
-    public CarroTodoTerreno(String nombre, String imagen) {
+    public MrBean(String nombre, String imagen) {
         super(
                 nombre,
                 0.0f,
@@ -17,18 +17,17 @@ public class CarroTodoTerreno extends Vehiculo {
         aumentarVelocidad(getAceleracion());
 
         System.out.println(
-                getNombre() + " aceleró con tracción todoterreno."
+                getNombre() + " aceleró con mucha energía."
         );
     }
 
     @Override
     public void usarHabilidad() {
-        aumentarVelocidad(2.0f);
+        aumentarVelocidad(3.0f);
         aumentarDistancia(10.0f);
 
         System.out.println(
-                getNombre()
-                        + " utilizó TRACCIÓN TOTAL."
+                getNombre() + " utilizó ¡IMPULSO COMPACTO!"
         );
     }
 }
