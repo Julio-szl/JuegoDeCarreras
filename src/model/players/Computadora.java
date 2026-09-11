@@ -1,6 +1,7 @@
-package model;
+package model.players;
 
 import java.util.Random;
+import model.Vehiculos.*;
 
 public class Computadora extends Jugador {
 
