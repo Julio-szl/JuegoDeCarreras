@@ -1,6 +1,5 @@
 package model;
 
-import Vehiculos.Vehiculo;
 import java.util.Random;
 
 public class Computadora extends Jugador {

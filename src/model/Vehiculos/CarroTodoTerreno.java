@@ -1,13 +1,13 @@
-package Vehiculos;
+package model.Vehiculos;
 
 public class CarroTodoTerreno extends Vehiculo {
 
     public CarroTodoTerreno(String nombre, String imagen) {
         super(
                 nombre,
-                0.0f, // Velocidad inicial
-                2.5f, // Aceleración
-                0.0f, // Distancia inicial
+                0.0f,
+                2.5f,
+                0.0f,
                 imagen
         );
     }
