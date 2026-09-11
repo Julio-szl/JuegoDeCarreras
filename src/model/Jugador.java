@@ -1,5 +1,7 @@
 package model;
 
+import Vehiculos.Vehiculo;
+
 public abstract class Jugador {
 
     private String name;

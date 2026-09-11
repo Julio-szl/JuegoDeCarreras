@@ -1,4 +1,4 @@
-package  model;
+package  Vehiculos;
 
 public abstract class Vehiculo {
 
