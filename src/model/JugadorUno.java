@@ -1,7 +1,5 @@
 package model;
 
-import Vehiculos.Vehiculo;
-
 public class JugadorUno extends Jugador {
 
     private int teclaArriba;

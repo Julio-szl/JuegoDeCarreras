@@ -1,4 +1,4 @@
-package Vehiculos;
+package model.Vehiculos;
 
 public class CarroTodoTerreno extends Vehiculo {
 

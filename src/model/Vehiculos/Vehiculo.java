@@ -1,4 +1,4 @@
-package  Vehiculos;
+package model.Vehiculos;
 
 public abstract class Vehiculo {
 
@@ -37,14 +37,13 @@ public abstract class Vehiculo {
 
             this.velocidad = velocidad;
 
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(
                 "Error de velocidad: " + e.getMessage()
             );
 
             this.velocidad = 0;
         }
-
     }
 
     protected void aumentarVelocidad(float cantidad) {
