@@ -1,4 +1,6 @@
-package model;
+package model.players;
+
+import model.Vehiculos.Vehiculo;
 
 public abstract class Jugador {
 

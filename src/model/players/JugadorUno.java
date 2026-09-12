@@ -1,11 +1,13 @@
-package model;
+package model.players;
 
-public class JugadorDos extends Jugador {
+import model.Vehiculos.*;
+
+public class JugadorUno extends Jugador {
 
     private int teclaArriba;
     private int teclaAbajo;
 
-    public JugadorDos(String name, Vehiculo vehiculo, int teclaArriba, int teclaAbajo) {
+    public JugadorUno(String name, Vehiculo vehiculo, int teclaArriba, int teclaAbajo) {
         super(name, vehiculo);
         this.teclaArriba = teclaArriba;
         this.teclaAbajo = teclaAbajo;
